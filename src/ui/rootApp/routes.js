@@ -1,20 +1,8 @@
-import Home from 'ui/views/Home/Home'
-import AboutUs from 'ui/views/AboutUs/AboutUs'
-import NotFound from 'ui/views/NotFound/NotFound'
+import asyncImporter from './asyncImporter'
 
-// const dynamicImporter = (modulePath) => {
-//   console.log('module is', modulePath)
-//   import(modulePath)
-//     .then((module) => {
-//       console.log('module is', module)
-//       return module
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     })
-// }
-//
-// const HomeComponent = dynamicImporter('../../views/Home/Home')
+const Home = asyncImporter(() => import('ui/views/Home/Home'))
+const AboutUs = asyncImporter(() => import('ui/views/AboutUs/AboutUs'))
+const NotFound = asyncImporter(() => import('ui/views/NotFound/NotFound'))
 
 export default [
   {
@@ -32,6 +20,6 @@ export default [
   {
     path: '*',
     name: 'NOT_FOUND',
-    component: NotFound,
+    component: NotFound
   }
 ]
