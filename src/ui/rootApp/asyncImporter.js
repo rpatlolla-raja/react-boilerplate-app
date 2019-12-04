@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Layout } from 'ui/components/Layout'
 
 export default function asyncImporter(importComponent) {
   class AsyncComponent extends Component {
@@ -21,7 +22,7 @@ export default function asyncImporter(importComponent) {
     render() {
       const Component = this.state.component
 
-      return Component ? <Component {...this.props} /> : null
+      return Component ? <Component {...this.props} /> : <Layout />
     }
   }
 
