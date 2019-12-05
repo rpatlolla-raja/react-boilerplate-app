@@ -3,6 +3,7 @@ import { createEpicMiddleware } from 'redux-observable'
 import { routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 import rootReducer from 'app/reducers'
+import rootEpic from 'app/epics'
 
 export const history = createBrowserHistory()
 
@@ -24,9 +25,12 @@ export default function configureStore() {
 
   const enhancers = [applyMiddleware(...middleware)]
 
-  return createStore(
+  const store = createStore(
     rootReducer(history),
     initialState,
     composeEnhancers(...enhancers)
   )
+  epicMiddleware.run(rootEpic)
+
+  return store
 }
