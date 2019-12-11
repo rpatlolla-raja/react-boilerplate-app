@@ -1,13 +1,17 @@
 import { combineEpics, ofType } from 'redux-observable'
-import { map, ignoreElements } from 'rxjs/operators'
+import { map } from 'rxjs/operators'
+import { IS_MAKE_REQUEST_API } from 'config/const'
 
 export const locationChangedEpic = action$ => {
   return action$.pipe(
     ofType('@@router/LOCATION_CHANGE'),
-    map(() => {
-      console.log('Location change observer')
-    }),
-    ignoreElements()
+    map(action => {
+      console.log('Location change observer', action)
+      return {
+        type: 'GET_RESULT_FROM_API',
+        [IS_MAKE_REQUEST_API]: true
+      }
+    })
   )
 }
 

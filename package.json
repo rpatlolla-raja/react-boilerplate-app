@@ -53,6 +53,7 @@
       "last 1 safari version"
     ]
   },
+  "proxy": "http://192.168.1.89:3000",
   "devDependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.7.4"
   }
